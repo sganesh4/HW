@@ -2,8 +2,8 @@
 ###Name : Sushil Ganesh
 ###Unity ID: sganesh4
 
-* Git Commands for levels 1-8 of git branching tutorial
-*Levels 1-4
+Git Commands for levels 1-8 of git branching tutorial <br />
+Levels 1-4 <br />
 1. git commit; git commit
 
 2. git branch bugFix; git checkout bugFix; git commit
@@ -12,7 +12,7 @@
 
 4. git branch bugFix; git checkout bugFix; git commit; git checkout master; git commit; git checkout bugFix; git rebase master
 
-* Bonus
+Bonus <br />
 5. git checkout C4
 
 6. git checkout bugFix^
@@ -21,5 +21,5 @@
 
 8. git reset HEAD^1; git checkout pushed; git revert HEAD
 
-*Screen Shot of Progress
+Screen Shot of Progress <br />
 ![Alt text](https://raw.githubusercontent.com/sganesh4/HW/master/Sganesh4%20git%20.PNG)
