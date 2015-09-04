@@ -4,12 +4,14 @@
 
 Git Commands for levels 1-8 of git branching tutorial <br />
 Levels 1-4 <br />
+
 1. git commit; git commit
 2. git branch bugFix; git checkout bugFix; git commit
 3. git branch bugFix; git checkout bugFix; git commit; git checkout master; git commit; git merge bugfix; 
 4. git branch bugFix; git checkout bugFix; git commit; git checkout master; git commit; git checkout bugFix; git rebase master
 
 Bonus <br />
+
 5. git checkout C4
 6. git checkout bugFix^
 7. git branch -f master C6; git checkout HEAD^1; git branch -f bugFix HEAD^1
