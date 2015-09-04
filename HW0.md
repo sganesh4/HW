@@ -22,3 +22,4 @@
 8. git reset HEAD^1; git checkout pushed; git revert HEAD
 
 *Screen Shot of Progress
+![Alt text](https://raw.githubusercontent.com/sganesh4/HW/master/Sganesh4%20git%20.PNG)
