@@ -17,6 +17,10 @@ Bonus <br />
 7. git branch -f master C6; git checkout HEAD^1; git branch -f bugFix HEAD^1
 8. git reset HEAD^1; git checkout pushed; git revert HEAD
 
+Contents of .git/hooks/post_commit <br />
+#!/bin/bash <br />
+start https://github.com/CSC-DevOps/Course <br />
+
 Screen Shot of Progress <br />
 ![Alt text](https://raw.githubusercontent.com/sganesh4/HW/master/Sganesh4%20git%20.PNG)
 
