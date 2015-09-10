@@ -18,7 +18,7 @@ Bonus <br />
 8. git reset HEAD^1; git checkout pushed; git revert HEAD
 
 Contents of .git/hooks/post_commit <br />
-#!/bin/bash <br />
+\#!/bin/bash <br />
 start https://github.com/CSC-DevOps/Course <br />
 
 Screen Shot of Progress <br />
