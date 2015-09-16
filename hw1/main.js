@@ -105,7 +105,7 @@ client.listDropletById(function(error, response){
 		console.log("Printing droplet"+dropletId);
 		console.log(data.droplet.networks);
         var node_string = "node"+counter+++" ansible_ssh_host="+data.droplet.networks.v4[0].ip_address+" ansible_ssh_user=root\n"
-        fs.appendFile('./inventory', node_string, encoding='utf8', function (err) {
+        fs.appendFile('~/ansible/inventory', node_string, encoding='utf8', function (err) {
             if (err) throw err;
         });
 	}
@@ -151,7 +151,7 @@ setTimeout(function(){
             var ip = data.Reservations[0].Instances[0].PublicIpAddress;
             console.log(ip);           // successful response
             var node_string = "node"+counter++ +" ansible_ssh_host="+ip+" ansible_ssh_user=root\n"
-            fs.appendFile('./inventory', node_string, encoding='utf8', function (err) {
+            fs.appendFile('~/ansible/inventory', node_string, encoding='utf8', function (err) {
                 if (err) throw err;
             });
         }
