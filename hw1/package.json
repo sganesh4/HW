@@ -1,21 +1,26 @@
 {
-  "name": "hw",
+  "name": "hw1",
   "version": "1.0.0",
-  "description": "hw1 npm management",
+  "description": "hw1 repo",
   "main": "main.js",
   "scripts": {
-    "test": "node main.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sganesh4/HW.git"
   },
   "keywords": [
-    "npm",
-    "node",
+    "ansible",
+    "vagrant",
     "aws",
-    "digitalocean"
+    "digitalocean",
+    "devops"
   ],
+  "dependencies": {
+    "aws-sdk": "*",
+    "needle": "*"
+  },
   "author": "Sushil Ganesh <sganesh4@ncsu.edu>",
   "license": "ISC",
   "bugs": {
