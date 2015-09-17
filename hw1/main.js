@@ -4,7 +4,7 @@
 var needle = require("needle")
 var aws = require("aws-sdk")
 var fs=require("fs")
-var headers = require("./default.json")
+var headers = require("./default_digocean.json")
 var aws_config = require("./default_aws.json")
 fs.writeFile('./inventory', '[webservers]\n', function (err) {
     if (err) throw err;
