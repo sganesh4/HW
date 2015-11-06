@@ -77,3 +77,6 @@ Have `upload` store the images in a queue.  Have `meow` display the most recent 
 Bonus: How might you use redis and express to introduce a proxy server?
 
 See [rpoplpush](http://redis.io/commands/rpoplpush)
+
+### Screencast
+[![Alt text for your video](http://img.youtube.com/vi/q8UTyvf3XZk/0.jpg)](http://www.youtube.com/watch?v=q8UTyvf3XZk)
