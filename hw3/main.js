@@ -25,7 +25,10 @@ app.use(function(req, res, next)
 });
 
 app.get('/set', function(req, res) {
-  res.send('Configuring expiring cache!!')
+  res.writeHead(200, {'content-type':'text/html'});
+  //res.write("<h1>\nThis reques has been redirected to "+req.port);
+  res.write("<h1>\nConfiguring Key that would expire in 10s");
+  res.end();
   client.set('expiring', 'this message will self-destruct in 10 seconds')
   client.expire('expiring', 10)
 })
@@ -34,11 +37,15 @@ app.get('/get', function(req, res) {
   client.get('expiring', function(err,value){
     if(value){
       console.log(value)
-      res.send(value)
+      res.writeHead(200, {'content-type':'text/html'});
+      res.write("<h1>\n"+value);
+      res.end();
     }
     else{
       console.log('The key you requested has expired')
-      res.send('Key Expired')
+      res.writeHead(200, {'content-type':'text/html'});
+      res.write("<h1>\nKey Expired");
+      res.end();
     }
   })
 })
@@ -46,10 +53,17 @@ app.get('/recents', function(req, res) {
   client.lrange('recents', 0,  4, function(err,value){
     if(value){
       console.log(value)
-      res.send(value)
+      res.writeHead(200, {'content-type':'text/html'});
+      for (var i=0; i<value.length; i++){
+        res.write("<h1>\n"+(i+1)+" "+value[i]);
+      }
+      res.end();
     }
     else{
-      res.send('Error in recents')
+      console.log('The key you requested has expired')
+      res.writeHead(200, {'content-type':'text/html'});
+      res.write("<h1>\nError in Recents");
+      res.end();
     }
   })
 })
@@ -80,7 +94,10 @@ app.get('/meow', function(req, res) {
         res.end();
       }
       else{
-        res.send('Error in images')
+        console.log('The key you requested has expired')
+      res.writeHead(200, {'content-type':'text/html'});
+      res.write("<h1>\nImages Not Found");
+      res.end();
       }
   })
   }
