@@ -15,13 +15,13 @@ var proxy = hProxy.createProxyServer({})
 // Add hook to make it easier to get all visited URLS.
 app.use(function(req, res, next)
 {
-	console.log(req.method, req.url);
+  console.log(req.method, req.url);
 
-	client.lpush('recents', req.url, function(err,reply) {
+  client.lpush('recents', req.url, function(err,reply) {
     //console.log(reply);
     })
 
-	next(); // Passing the request to the next handler in the stack.
+  next(); // Passing the request to the next handler in the stack.
 });
 
 app.get('/set', function(req, res) {
@@ -59,20 +59,20 @@ app.post('/upload',[ multer({ dest: './uploads/'}), function(req, res){
 
    if( req.files.image )
    {
-	   fs.readFile( req.files.image.path, function (err, data) {
-	  		if (err) throw err;
-	  		var img = new Buffer(data).toString('base64');
+     fs.readFile( req.files.image.path, function (err, data) {
+        if (err) throw err;
+        var img = new Buffer(data).toString('base64');
         client.rpush(['images',img], function(err,resp) {
           console.log("Response : ",resp);
         })
-		});
-	}
+    });
+  }
 
    res.status(204).end()
 }]);
 
 app.get('/meow', function(req, res) {
-	{
+  {
     client.rpop('images', function(err,data){
       if(data){
         res.writeHead(200, {'content-type':'text/html'});
@@ -83,11 +83,11 @@ app.get('/meow', function(req, res) {
         res.send('Error in images')
       }
   })
-	}
+  }
 })
 
 var proxyManager  = http.createServer(function(req, res) {
-  client.rpoplpush('proxy-servers', 'proxy-servers',function(err, resp){
+  client.lpop('proxy-servers', function(err, resp){
   if(!err) {
   console.log("Redirecting request to "+resp);
   proxy.web(req, res, { target: resp });

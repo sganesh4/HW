@@ -1,4 +1,5 @@
 *log
+uploads/
 node_modules/
 .idea/
 hw1/inventory
