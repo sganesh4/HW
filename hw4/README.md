@@ -22,10 +22,33 @@ docker run -it --link fileio:client request -c 'exec curl http://"$CLIENT_PORT_9
 
 2) **Ambassador pattern**: Implement the remote ambassador pattern to encapsulate access to a redis container by a container on a different host.
 
-* Use Docker Compose to configure containers.
-* Use two different VMs to isolate the docker hosts. VMs can be from vagrant, DO, etc.
-* The client should just be performing a simple "set/get" request.
-* In total, there should be 4 containers.
+* For this demonstration I am using 2 DO droplets
+* On the first droplet run the following commands
+```
+cd HW/hw4/task2/redis/
+docker build -t redis_server .
+docker run -d --name server redis_server
+docker ps
+docker exec -it <container_id for redis_server> redis-cli
+set exampleFlag true
+```
+On a different terminal
+```
+cd HW/hw4/task2/redis_ambassador
+docker build -t redis_ambassador .
+docker run -t -d --link server:redis --name server_ambassador -p 6379:6379 redis_ambassador
+```
+
+* On the second droplet run the commands shown below
+```
+cd HW/hw4/task2/redis_ambassador/
+docker run -d --name client_ambassador --expose 6379 -e REDIS_PORT_6379_TCP=tcp://<server droplet IP address>:6379 redis_ambassador
+cd HW/hw4/task2/redis_client/
+docker build -t redis_client .
+docker run -it --rm --link client_ambassador:redis redis_client -c 'exec redis-cli -h "$REDIS_PORT_6379_TCP_ADDR" -p "$REDIS_PORT_6379_TCP_PORT"'
+get exampleFlag
+set flag2 "This is a remote set example"
+```
 
 3) **Docker Deploy**: Extend the deployment workshop to run a docker deployment process.
 
