@@ -1,13 +1,13 @@
-client_ambassador: 
+redis_ambassador: 
   build: ../redis_ambassador/
   expose: 
-    - "3000"
+    - "6379"
   environment: 
     - REDIS_PORT_6379_TCP=tcp://162.243.67.142:6379
 
 redis_client:
-  build: ../redis_client/
-  ports: 
-    - "6379:6379"
-  links: 
-    - client_ambassador:redis
+   build: ../redis_client/
+   links: 
+    - "redis_ambassador:redis"
+   entrypoint: redis-cli -h redis -p 6379
+   
