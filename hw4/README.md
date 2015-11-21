@@ -40,7 +40,31 @@ docker-compose run --rm redis_client
 
 3) **Docker Deploy**: Extend the deployment workshop to run a docker deployment process.
 
-* A commit will build a new docker image.
-* Push to local registery.
-* Deploy the dockerized [simple node.js App](https://github.com/CSC-DevOps/App) to blue or green slice.
-* Add appropriate hook commands to pull from registery, stop, and restart containers.
+* Clone the deployment workshop repo and create a directory structure using the below commands
+```
+git clone https://github.com/CSC-DevOps/Deployment.git
+cd Deployment
+mkdir -p deploy/{green.git,blue.git,green-www,blue-www}
+cd green.git; git init --bare
+cd ../blue.git; git init --bare
+```
+* Update the 'post-receive' hook in blue.git/hooks and green.git/hooks with the contents of [blue-hook](https://raw.githubusercontent.com/sganesh4/HW/master/hw4/task3/blue-post-receive) and [green-hook](https://raw.githubusercontent.com/sganesh4/HW/master/hw4/task3/green-post-receive) respectively
+* Update ~/.bash_profile with the following changes and restart all terminals
+```
+export ROOT=/root/test/Deployment/deploy
+export APP_ROOT=/root/test/App/
+```
+* Clone the [simple node.js App](https://github.com/CSC-DevOps/App) repo and update the .git/hooks/pre-push with [this](https://raw.githubusercontent.com/sganesh4/HW/master/hw4/task3/app-pre-push) and execute the following commands.
+```
+git remote add green file://$ROOT/green.git
+git remote add blue file://$ROOT/blue.git
+```
+* Start the docker registry using
+```
+docker run -d -p 5000:5000 --restart=always --name registry registry:2
+```
+* Push changes to blue and green using and view the file changes at http://<server_ip>:9000 & http://<server_ip>:9001
+```
+git push green master
+git push blue master
+```
