@@ -68,3 +68,6 @@ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 git push green master
 git push blue master
 ```
+
+#### Screencast 
+[![Alt text for your video](http://img.youtube.com/vi/KIVSGxPvmEk/0.jpg)](http://www.youtube.com/watch?v=KIVSGxPvmEk)
