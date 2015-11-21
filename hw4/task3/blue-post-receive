@@ -1,0 +1,9 @@
+#!/bin/bash
+GIT_WORK_TREE=$ROOT/blue-www/ git checkout -f
+cd $ROOT/blue-www; 
+docker stop blue_app
+docker rm blue_app
+docker rmi localhost:5000/simple_app:current_blue
+docker pull localhost:5000/simple_app:blue
+docker tag localhost:5000/simple_app:blue localhost:5000/simple_app:current_blue
+docker run -p 9000:8080 -d --name blue_app localhost:5000/simple_app:current_blue

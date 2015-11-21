@@ -1,0 +1,11 @@
+#!/bin/sh
+
+docker_tag=$1
+branch=$2
+
+echo "Creating docker image"
+cd $APP_ROOT
+docker build -t simple_app .
+docker tag -f simple_app localhost:5000/simple_app:$docker_tag
+docker push localhost:5000/simple_app:$docker_tag
+
