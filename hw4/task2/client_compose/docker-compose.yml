@@ -1,0 +1,9 @@
+server: 
+  build: ../redis/
+
+server_ambassador:
+  build: ../redis_ambassador/
+  ports: 
+    - "6379:6379"
+  links: 
+    - server:redis
